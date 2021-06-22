@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.cqupt.springboot_shiro_jsp.dao.RoleDao">
+
+    <select id="getPermsByRoleId" parameterType="Integer" resultType="Perm">
+        select p.perm_id, p.name, p.url
+        from shiro_role r
+        left join shiro_role_perm rp
+            on r.id = rp.role_id
+        left join shiro_perm p
+            on rp.perm_id = p.perm_id
+        where role_id = #{roleId};
+    </select>
+</mapper>
